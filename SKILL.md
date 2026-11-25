@@ -1,37 +1,37 @@
 ﻿# SKILL: Document Parser
 
-Локальный сервис для извлечения текста из документов без внешних API.
+Local service for extracting text from documents. No external APIs.
 
-## Назначение
-Принимает файл, извлекает из него текст и возвращает:
-полный текст, количество символов, количество предложений,
-топ-10 ключевых слов и краткий обзор (3 самых информативных предложения).
+## Purpose
+Accepts a file, extracts its text and returns:
+full text, character count, sentence count,
+top-10 keywords, and a brief summary (3 most informative sentences).
 
-## Поддерживаемые форматы
-- .pdf  — через pypdf
-- .docx — через python-docx (текст абзацев + таблицы)
-- .xlsx — через openpyxl (все листы, все ячейки)
-- .rtf  — через striprtf
-- .pptx — через python-pptx (текст всех слайдов, разметка [Slide N])
-- .csv, .txt, .md — как обычный текст с декодированием UTF-8
+## Supported formats
+- .pdf  — via pypdf
+- .docx — via python-docx (paragraph text + tables)
+- .xlsx — via openpyxl (all sheets, all cells)
+- .rtf  — via striprtf
+- .pptx — via python-pptx (text of all slides, [Slide N] markup)
+- .csv, .txt, .md — plain text with UTF-8 decoding
 
-## Запуск
-1. Установить зависимости: pip install -r requirements.txt
-2. Запустить сервер: python -m uvicorn main:app --reload
-3. Сервис: http://127.0.0.1:8000 — Swagger: http://127.0.0.1:8000/docs
+## Running
+1. Install dependencies: pip install -r requirements.txt
+2. Start the server: python -m uvicorn main:app --reload
+3. Service: http://127.0.0.1:8000 — Swagger docs: http://127.0.0.1:8000/docs
 
 ## API
-POST /analyze/ — multipart/form-data, поле file.
+POST /analyze/ — multipart/form-data, field: file.
 
-## Формат ответа (JSON)
-- filename — имя загруженного файла
-- format — расширение файла
-- characters_extracted — количество извлечённых символов
-- sentences_count — количество предложений
-- keywords — топ-10 ключевых слов (список)
-- summary — краткий обзор (3 предложения)
-- full_text — полный извлечённый текст
+## Response format (JSON)
+- filename — uploaded file name
+- format — file extension
+- characters_extracted — number of extracted characters
+- sentences_count — number of sentences
+- keywords — top-10 keywords (list)
+- summary — brief overview (3 sentences)
+- full_text — full extracted text
 
-## Требования
+## Requirements
 - Python 3.9+
 - Windows / Linux / macOS
